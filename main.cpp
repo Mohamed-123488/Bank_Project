@@ -10,13 +10,54 @@ protected:
     int Id = 0;
     string Name;
     string Password;
+public:
+ // Constructor
+    Person() {
+        Id = 0 ;
+        Password = "";
+        Name = "";
+    }
+    Person(int i , string n, string p) {
+        Id = i;
+        Name = n;
+        Password = p;
+    }
+ // Setter
+    void setId(int i) {
+        Id = i;
+    }
+    void setName(string n) {
+        Name = n;
+    }
+    void setPassword(string p) {
+        Password = p;
+    }
+ // Getter
+    int getId() {
+        return Id;
+    }
+    string getName() {
+        return Name;
+    }
+    string getPassword() {
+        return Password;
+    }
+};
 
-    bool isAlphabetic (const string &str)
-    {
-        for (const char ch: str)
-        {
-            if (!isalpha(ch))
-            {
+// Class Client Inheritance From Class Person
+
+class Client : public Person
+{
+// Attribute
+protected:
+    int Id = 0;
+    string Name;
+    string Password;
+    double Balance = 0;
+
+    bool isAlphabetic (const string &str) {
+        for (const char ch: str) {
+            if (!isalpha(ch)) {
                 return false;
             }
         }
@@ -24,23 +65,27 @@ protected:
     }
 
 public:
- // Constructor
-    Person()
+// Constructor
+    Client()
     {
-        Id = 0 ;
-        Password = "";
-        Name = "";
+        Id = 0;
+        Name = " ";
+        Password = " ";
+        Balance = 0;
     }
-    Person(int i , string n, string p)
+    Client(const int i, const string &n , const string &p , const double b)
     {
         Id = i;
         Name = n;
         Password = p;
+        Balance = b;
     }
-
- // Setter
-
-   void set_Name(const string &newName )
+// Setter
+    void set_Id(const int i)
+    {
+        Id = i;
+    }
+    void set_Name(const string &newName )
     {
         if (newName.length() >= 5 && newName.length() <= 20 && isAlphabetic(newName))
         {
@@ -52,7 +97,7 @@ public:
         }
     }
 
-// If The Password Between (Min Size 8 $$ Max Size 20) , OtherWise Exit .
+ // If The Password Between (Min Size 8 $$ Max Size 20) , OtherWise Exit .
 
     void set_Password (const string &newPassword)
     {
@@ -65,44 +110,10 @@ public:
             cout<< "Password must be alphabetic and less than 8 characters."<<endl;
         }
     }
- // Getter
-
-    string getName()
-    {
-        return Name;
-    }
-    string getPassword()
-    {
-        return Password;
-    }
-
-    virtual void display()
-    {
-        cout<<"ID : "<<id<<" Name : "<<name<<endl;
-    }
-};
-
-// Class Client Inheritance From Class Person
-
-class Client : public Person
-{
-// Attribute
-protected:
-
-    double Balance = 0;
-
-public:
-// Constructor
-    Client(int i, string n ,  string p , double b) : Person (id ,name ,password)
-    {
-        Balance = b;
-    }
-
- //Setter
 
  // If The Balance Is Less Than 1500 , Print Balance OtherWise , Exit .
 
-    void set_Balance( double newBalance)
+    void set_Balance(const double newBalance)
     {
         if (newBalance >= 1500)
         {
@@ -113,14 +124,21 @@ public:
             cout<<"Balance must be greater than 1500."<<endl;
         }
     }
-
 // Getter
+    int get_Id()
 
+    const { return Id ;}
+
+    string get_Name()
+    {
+        return Name;
+    }
+    string get_Password() {
+        return Password;
+    }
     double get_Balance()
 
-    {
-        return Balance;
-    }
+    const{return Balance;}
 
 //*********************************** Functions ***************************//
 
@@ -172,34 +190,90 @@ public:
         cout << " Current Balance : " << Balance <<endl;
     }
 // Display Function
-    void display()
-    {
+    void display() {
+        cout<< " Client ID : " << Id <<endl;
+        cout<<"**********************************"<<endl;
+        cout << " Name : " << Name <<endl;
+        cout<<"**********************************"<<endl;
+        cout << " Password : " << Password <<endl;
+        cout<<"**********************************"<<endl;
         cout << " Balance : " << Balance <<endl;
         cout<<"**********************************"<<endl;
     }
 };
 
-// class Employee Inheritance From Person.
+// class Employee Inheritance from Class Person
 
 class Employee : public Person
 {
-// Attribute
+    // Attribute
 protected:
-     double Salary;
-public:
-// Constructor
-        Employee(int id , string name , string Password , double Salary) : Person (id , name , password)
-        {
-            Salary = 0;
+    int Id = 0;
+    string Name;
+    string Password;
+    double Salary = 0;
+
+    bool isAlphabetic (const string &str) {
+        for (const char ch: str) {
+            if (!isalpha(ch)) {
+                return false;
+            }
         }
 
-//Setter
+    }
+public:
+// Constructor
+    Employee()
+    {
+        Id = 0;
+        Name = "";
+        Password = "";
+        Salary = 0;
+    }
+    Employee(const int i,const string &n, const string &p, const double s)
+    {
+        Id = i;
+        Name = n;
+        Password = p;
+        Salary = s;
+    }
+// Setter
+    void set_Id(const int i)
+    {
+        Id = i;
+    }
+    void set_Name(const string &newName)
+    {
+        if (newName.length() >= 5 && newName.length() <= 20 && isAlphabetic(newName))
+        {
+            Name = newName;
+        }
+        else
+        {
+            cout<<"Name must be alphabetic and between 5 and 20 characters."<<endl;
+        }
+    }
+
+// If The Password Between (Min Size 8 $$ Max Size 20) , OtherWise Exit .
+
+    void set_Password(const string &newPassword)
+    {
+        if (newPassword.length() >= 8 && newPassword.length() <= 20)
+
+        {
+            Password = newPassword;
+        }
+        else
+        {
+            cout<< "Password must be alphabetic and less than 8 characters."<<endl;
+        }
+    }
 
 // If The Balance Is Less Than 5000 , Print Balance OtherWise , Exit .
 
     void set_Salary(const double newSalary)
     {
-        if (newSalary < 5000)
+        if (newSalary >= 5000)
         {
             Salary = newSalary;
         }
@@ -210,49 +284,73 @@ public:
     }
 
 // Getter
-
-    double get_Salary()
+    int get_Id() const
+    {
+        return Id;
+    }
+    string get_Name()
+    {
+        return Name;
+    }
+    string get_Password()
+    {
+        return Password;
+    }
+    double get_Salary() const
     {
         return Salary;
     }
 
-// Function
-
-void display()
-{
-    Person::display();
-    cout<<"Salary : "<<Salary<<endl;
-}
+// Function Display
+    void display() {
+        cout<<"ID : "<<Id<<endl;
+        cout<<"**********************"<<endl;
+        cout<<"Name : "<<Name<<endl;
+        cout<<"**********************"<<endl;
+        cout<<"Password : "<<Password<<endl;
+        cout<<"**********************"<<endl;
+        cout<<"Salary : "<<Salary<<endl;
+    }
 };
 
-// Class Admin Inheritance From Person
+// Class Admin Inheritance From Employee
 
 class Admin : public Employee
 {
-// Attribute
 public:
-//Constructor
-Admin(int id, string name, string password, double salary) : Employee (id, name, password, salary)
-{}
+    Admin(const int i,const string &n, const string &p, const double s) : Employee(i,n,p,s) {}
 
-// Function Display
-
-void display()
-    {
-        Person::display();
-        cout << "Admin Salary: " << salary << endl;
+    void display() {
+        Employee::display();
+        cout<<"Admin Salary : "<<Employee::get_Salary()<<endl;
     }
-
 };
 
 int main()
 {
-     Client client1(1, "Mohamed Atef", "Mo 2005", 2000);
-    Employee emp1(2, "Omar Ramadan", "Om 2006", 6000);
-    Admin admin1(3, "Ahmed", "Ah 2015", 7000);
+    Client client1 (2 , "Mohamed Atef" , "nmj 2254" , 1500);
+    Client client2 (3 , "Ahmed" , "MO 2214" , 1200 );
+
+    Employee employee (1 , "Yousuf" , "Yo 3695" , 6000);
+
+    Admin admin (4 , "Omar Ramadan" , "Or 3695" , 8000);
 
     client1.display();
-    emp1.display();
-    admin1.display();
+    cout<<"**************"<<endl;
+    client1.deposit(400);
+    cout<<"****************"<<endl;
+    client1.withdraw(600);
+    cout<<"****************"<<endl;
+    client1.transferTo(800, client2);
+    cout<<"****************"<<endl;
+    client1.checkBalance();
+
+    cout<<"********************************************"<<endl;
+
+    employee.display();
+
+    cout<<"********************************************"<<endl;
+
+    admin.display();
      return 0;
 }
