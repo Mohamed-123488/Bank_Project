@@ -190,7 +190,8 @@ public:
         cout << " Current Balance : " << Balance <<endl;
     }
 // Display Function
-    void display() {
+    void display()
+     {
         cout<< " Client ID : " << Id <<endl;
         cout<<"**********************************"<<endl;
         cout << " Name : " << Name <<endl;
