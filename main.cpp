@@ -10,7 +10,7 @@ int main()
 	Person p1(2, "Mohamed", "Mo2254258");
 	p1.display();
 	cout << "****************" << endl;
-	Client c1(2, "	Ahmed A", "Mo2254369",1800);
+	Client c1(2, "Ahmed A", "Mo2254369",1800);
 	cout << "****************" << endl;
 	Client c2(3, "Yosuf A", "Qe55871458", 1900);
 	cout << "****************" << endl;
